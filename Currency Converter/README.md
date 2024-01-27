@@ -16,6 +16,7 @@ This is a simple ReactJS application that converts currencies using the [Exchang
 - How to use React Hooks
 - How to use Custom React Hooks (and why to use them)
 - It was my first time using Tailwind CSS (I really like it)
-- 
+
 ### Completions
 - This project is complete on my end but if you have any suggestions, please let me know by opening an issue or a pull request. Thankyou!
+> Coded this with help from [this tutorial](https://www.youtube.com/watch?v=VJov5QWEKE4&list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&index=12).
