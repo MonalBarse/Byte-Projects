@@ -1,8 +1,21 @@
-# React + Vite
+# Currency Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple ReactJS application that converts currencies using the [Exchange Rates API](https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json).
 
-Currently, two official plugins are available:
+(![Converter](image.png))
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> This project was bootstrapped with [Vite](https://vitejs.dev/).   
+
+## How to run
+1. Clone this repository
+2. Run `npm install` to install dependencies
+3. Run `npm run dev`
+4. Open [ http://localhost:5173/]( http://localhost:5173/) to view it in the browser.
+
+### What I learned in this project
+- How to use React Hooks
+- How to use Custom React Hooks (and why to use them)
+- It was my first time using Tailwind CSS (I really like it)
+- 
+### Completions
+- This project is complete on my end but if you have any suggestions, please let me know by opening an issue or a pull request. Thankyou!
