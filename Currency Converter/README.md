@@ -1,6 +1,6 @@
 # Currency Converter
 
-This is a simple ReactJS application that converts currencies using the [Exchange Rates API](https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json).
+This is a simple ReactJS application that converts currencies using the [cdn.jsdelivr's API](https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies.json).
 
 (![Converter](image.png))
 
