@@ -10,13 +10,13 @@ import {
 } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
-import Chatpage from "./pages/Chatpage.jsx";
+import Chatpage, { chatFetcher } from "./pages/Chatpage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Homepage />} />
-      <Route path="/chats" element={<Chatpage />} />
+      <Route path="/chats" element={<Chatpage />} loader={chatFetcher} />
     </Route>
   )
 );

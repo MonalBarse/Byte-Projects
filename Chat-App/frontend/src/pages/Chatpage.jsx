@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
 
 function Chatpage() {
+  const chats = useLoaderData(); // WE USED useLoaderData instead of useEffect for optimization below useEffect method is also valid 
+/* 
   const [chats, setChats] = useState([]);
-
   async function fetchChats() {
     try {
       const response = await axios.get("http://localhost:3000/api/chats");
@@ -13,10 +15,11 @@ function Chatpage() {
       console.error("Error fetching chats:", error.message);
     }
   }
-
   useEffect(() => {
     fetchChats();
   }, []);
+ */
+
 
   return (
     <div>
@@ -36,4 +39,15 @@ function Chatpage() {
   );
 }
 
+
+
 export default Chatpage;
+export const chatFetcher = async () => {
+  try {
+    const response = await axios.get("http://localhost:3000/api/chats");
+    const result = await response.data;
+    return result
+  } catch (error) {
+    console.error("Error fetching chats:", error.message);
+  }
+}
