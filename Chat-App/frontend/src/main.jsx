@@ -3,11 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import {
-  BrowserRouter,
-  Route,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Route, createRoutesFromElements } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
 import Chatpage, { chatFetcher } from "./pages/Chatpage.jsx";
@@ -16,7 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Homepage />} />
-      <Route path="/chats" element={<Chatpage />} loader={chatFetcher} />
+      <Route path="/chats" element={<Chatpage />} loader={chatFetcher} /> {/* Loader is explained in Chatpage.jsx */}
     </Route>
   )
 );
@@ -29,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </ChakraProvider>
 );
 
-/* 
+/* NOTES:
 
 createBrowserRouter: 
 This function is used to create a router instance.
