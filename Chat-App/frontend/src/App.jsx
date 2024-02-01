@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Outlet/>
       {/* 
         Outlet is a placeholder for the child routes of the parent route. Outlet lets you render different components for different multiple routes.
