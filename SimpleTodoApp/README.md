@@ -4,23 +4,23 @@ This is a simple todo app that allows users to add, view, and complete tasks.
 
 ## Usage
 
-<!-- 1. Clone the repository:
+1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/todo-app.git
+        git clone https://github.com/MonalBarse/Byte-Projects/SimpleTodoApp.git
     ```
 
 2. Install the dependencies:
 
     ```bash
-    npm install
+        npm install
     ```
 
 3. Start the app:
 
     ```bash
-    npm start
-    ``` -->
+        npm start
+    ```
 
 4. Open your web browser and navigate to `http://localhost:3000`.
 
