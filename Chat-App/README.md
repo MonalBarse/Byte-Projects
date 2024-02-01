@@ -1,4 +1,4 @@
-# Chat App - Learn MERN Stack
+# Chat App - AIM: Learn MERN Stack
 
 ## Overview
 
