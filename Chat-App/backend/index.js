@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-
-const chats = require('./dummy data/data'); // This is dummy data, we are trying to mimic the data we will get from the database
+const connectDB = require('./config/db');
 const dotenv = require('dotenv');
-const app = express();
-app.use(cors());
-
+const chats = require('./dummy data/data');
 dotenv.config();
+const app = express();
+
+app.use(cors());
+connectDB();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
@@ -23,5 +24,5 @@ app.get('/api/chats/:id', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Server is running on port ${PORT}`);
 });
