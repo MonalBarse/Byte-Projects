@@ -4,12 +4,14 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const chats = require('./dummy data/data');
 const userRoutes = require('./routes/userRoutes');
-dotenv.config();
 const app = express();
 
 app.use(cors());
-connectDB();
+app.use(express.json());
+
+dotenv.config();
 const PORT = process.env.PORT || 3000;
+connectDB();
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
