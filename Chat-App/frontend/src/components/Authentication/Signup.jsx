@@ -6,9 +6,10 @@ import {
   InputRightElement,
   VStack,
 } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
-
+import { Input, useToast } from "@chakra-ui/react";
+import {  useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import axios from "axios";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -16,27 +17,77 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [show, setSetshow] = useState(false);
   const [confirmPass, setConfirmPass] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  let navigate = useNavigate();
   function handleClick() {
     setSetshow(!show);
   }
   const isSignupDisabled =
     !username || !email || !password || password !== confirmPass;
-    /* The isSignupDisabled variable will be true if any of these conditions are met. This means the signup button will be disabled if: The username is empty or undefined.  The email is empty or undefined. The password is empty or undefined.The password is not equal to the confirmPass. */
+  /* The isSignupDisabled variable will be true if any of these conditions are met. This means the signup button will be disabled if: The username is empty or undefined.  The email is empty or undefined. The password is empty or undefined.The password is not equal to the confirmPass. */
 
-    const submitHandler = () => {
-       /*  fetch("http://localhost:5000/api/signup", {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-            console.log(data);
-            }); */
-        }
+  const submitHandler = async () => {
+    setLoading(true);
+    if(!username || !email || !password || password !== confirmPass){
+      toast({
+        title: "Error",
+        description: error.response.data.message ,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom"
+      });
+      return;
+    }
+    if(password !== confirmPass){
+      toast({
+        title: "Error",
+        description: error.response.data.message ,
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom"
+      });  
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },};
+      const { data } = await axios.post(
+        "http://localhost:3000/api/user/",
+        { username, email, password },
+        config
+      );
+      toast({
+        title: "Registration Successful",
+        description: "User Created",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom"
+      });
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      navigate("/chat")
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error.response.data.message ,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+        position: "bottom"
+      });
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <VStack spacing="5px">
       <FormControl isRequired>
@@ -78,11 +129,14 @@ function Signup() {
           onChange={(e) => setConfirmPass(e.target.value)}
         />
       </FormControl>
-      <Button colorScheme="green"
-      width={"100%"}
-      style={{marginTop: 10}}
-      onClick={submitHandler}
-      isDisabled={isSignupDisabled}>
+      <Button
+        colorScheme="green"
+        width={"100%"}
+        style={{ marginTop: 10 }}
+        onClick={submitHandler}
+        isDisabled={isSignupDisabled}
+        isLoading={loading}
+      >
         Signup
       </Button>
     </VStack>
