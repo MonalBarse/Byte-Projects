@@ -28,5 +28,7 @@ Welcome to the Chat App – a project designed for myself to learn the MERN stac
     - Relationships between models are established using Mongoose's ref property, allowing for easy population of related data.
     - Timestamps are automatically managed for each model, recording the creation and update times.
  
-
+- Added User Authentication
+    - Added user Routes, Registration API, JSON WebTOKEN (JWT)
+    - Added password API and password encryption with bcrypt
 
