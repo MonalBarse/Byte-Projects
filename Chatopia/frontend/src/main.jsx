@@ -12,7 +12,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<Homepage />} />
-      <Route path="/chats" element={<Chatpage />} loader={chatFetcher} /> {/* Loader is explained in Chatpage.jsx */}
+      <Route path="/chat" element={<Chatpage />} /* loader={chatFetcher} */ /> {/* Loader is explained in Chatpage.jsx */}
     </Route>
   )
 );

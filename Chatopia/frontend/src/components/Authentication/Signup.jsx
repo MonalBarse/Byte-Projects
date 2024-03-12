@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function Signup() {
-  const [username, setUsername] = useState("");
+  const [name, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setSetshow] = useState(false);
@@ -24,16 +24,16 @@ function Signup() {
     setSetshow(!show);
   }
   const isSignupDisabled =
-    !username || !email || !password || password !== confirmPass;
+    !name || !email || !password || password !== confirmPass;
   /* The isSignupDisabled variable will be true if any of these conditions are met. This means the signup button will be disabled if: The username is empty or undefined.  The email is empty or undefined. The password is empty or undefined.The password is not equal to the confirmPass. */
 
   const submitHandler = async () => {
     setLoading(true);
-    if(!username || !email || !password || password !== confirmPass){
+    if(!name || !email || !password || !confirmPass){
       toast({
-        title: "Error",
+        title: "Fill all the fields",
         description: error.response.data.message ,
-        status: "error",
+        status: "warning",
         duration: 4000,
         isClosable: true,
         position: "bottom"
@@ -42,7 +42,7 @@ function Signup() {
     }
     if(password !== confirmPass){
       toast({
-        title: "Error",
+        title: "Password does not match",
         description: error.response.data.message ,
         status: "warning",
         duration: 4000,
@@ -60,7 +60,11 @@ function Signup() {
         },};
       const { data } = await axios.post(
         "http://localhost:3000/api/user/",
-        { username, email, password },
+        {
+          name,
+          email,
+          password,
+        },
         config
       );
       toast({
@@ -84,6 +88,7 @@ function Signup() {
         isClosable: true,
         position: "bottom"
       });
+      
       console.log(error);
       setLoading(false);
     }

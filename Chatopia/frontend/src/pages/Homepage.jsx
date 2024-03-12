@@ -26,7 +26,7 @@ const Homepage = () => {
         borderWidth="1px"
       >
         <Text fontSize="3xl" textAlign="center">
-          Chat-Chat
+          Chatopia
         </Text>
       </Box>
       <Box

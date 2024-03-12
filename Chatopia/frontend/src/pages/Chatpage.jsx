@@ -3,8 +3,8 @@ import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 
 function Chatpage() {
-  const chats = useLoaderData(); // WE USED useLoaderData instead of useEffect for optimization below useEffect method is also valid 
-/* 
+  // const chats = useLoaderData(); // WE USED useLoaderData instead of useEffect for optimization below useEffect method is also valid 
+
   const [chats, setChats] = useState([]);
   async function fetchChats() {
     try {
@@ -18,7 +18,7 @@ function Chatpage() {
   useEffect(() => {
     fetchChats();
   }, []);
- */
+
 
 
   return (
