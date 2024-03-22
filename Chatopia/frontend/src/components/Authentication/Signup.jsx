@@ -77,7 +77,7 @@ function Signup() {
         position: "bottom",
       });
       console.log(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data)); // THis stores the user Data (here its the name and email) in the local storage.
       setLoading(false);
       navigate("/chat");
     } catch (error) {

@@ -9,10 +9,19 @@ import {
   TabPanel,
   TabPanels,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if (user) {
+      navigate("/chat");
+    }
+  }, [navigate]);
   return (
     <Container maxW="xl" centerContent>
       <Box
@@ -38,9 +47,7 @@ const Homepage = () => {
       >
         <Tabs variant="soft-rounded" colorScheme="blue">
           <TabList mb="1em">
-            <Tab width="50%">
-              Login
-            </Tab>
+            <Tab width="50%">Login</Tab>
             <Tab width="50%">Sign Up!</Tab>
           </TabList>
           <TabPanels>

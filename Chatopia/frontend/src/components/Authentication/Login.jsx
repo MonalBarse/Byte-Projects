@@ -20,8 +20,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const isSiginpDisabled = !email || !password;
   const toast = useToast();
-  let navigate = useNavigate();
-
+  const navigate = useNavigate();
   const handleClick = () => {
     setShow(!show);
   };
@@ -61,7 +60,8 @@ function Login() {
         position: "bottom",
       });
       console.log(data);
-      // localStorage.setItem("userInfo", JSON.stringify(data));
+      
+      localStorage.setItem("userInfo", JSON.stringify(data)); // The data (email, name, token) is stored in the local storage
       setLoading(false);
       navigate("/chat");
     } catch (error) {
@@ -94,7 +94,7 @@ function Login() {
         <InputGroup>
           <Input
             style={{ border: "1px solid #ccc", borderRadius: "5px" }}
-            // type={show ? "text" : "password"}
+            type={show ? "text" : "password"}
             placeholder="Enter Your Password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
