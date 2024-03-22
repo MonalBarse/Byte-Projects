@@ -1,3 +1,4 @@
+// when a route is not found, this middleware will be called and will send a 404 status code
 const notFound = (req, res, next) => {
     const error = new Error(`Not Found - ${req.originalUrl}`);
     res.status(404);
@@ -11,8 +12,10 @@ const notFound = (req, res, next) => {
         // stack: process.env.NODE_ENV === 'production' ? null : err.stack
     });
 } */
+
+// This middleware will be called if there is an error in the code
 const errorHandler = (err, req, res, next) => {                               
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode; // if the status code is 200,(because the request was successful) then we will set the status code to 500 (because there was an error in the code) else we will set the status code to the status code that was sent
     res.status(statusCode);
     const errorPage = `
         <!DOCTYPE html>

@@ -7,7 +7,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Input, useToast } from "@chakra-ui/react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -29,26 +29,26 @@ function Signup() {
 
   const submitHandler = async () => {
     setLoading(true);
-    if(!name || !email || !password || !confirmPass){
+    if (!name || !email || !password || !confirmPass) {
       toast({
         title: "Fill all the fields",
-        description: error.response.data.message ,
+        description: error.response.data.message,
         status: "warning",
         duration: 4000,
         isClosable: true,
-        position: "bottom"
+        position: "bottom",
       });
       return;
     }
-    if(password !== confirmPass){
+    if (password !== confirmPass) {
       toast({
         title: "Password does not match",
-        description: error.response.data.message ,
+        description: error.response.data.message,
         status: "warning",
         duration: 4000,
         isClosable: true,
-        position: "bottom"
-      });  
+        position: "bottom",
+      });
       setLoading(false);
       return;
     }
@@ -57,7 +57,8 @@ function Signup() {
       const config = {
         headers: {
           "Content-Type": "application/json",
-        },};
+        },
+      };
       const { data } = await axios.post(
         "http://localhost:3000/api/user/",
         {
@@ -73,22 +74,22 @@ function Signup() {
         status: "success",
         duration: 4000,
         isClosable: true,
-        position: "bottom"
+        position: "bottom",
       });
       console.log(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/chat")
+      navigate("/chat");
     } catch (error) {
       toast({
         title: "Error",
-        description: error.response.data.message ,
+        description: error.response.data.message,
         status: "error",
         duration: 4000,
         isClosable: true,
-        position: "bottom"
+        position: "bottom",
       });
-      
+
       console.log(error);
       setLoading(false);
     }
@@ -98,6 +99,7 @@ function Signup() {
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          style={{ border: "1px solid #ccc", borderRadius: "5px" }}
           type="text"
           placeholder="Enter Your Name"
           onChange={(e) => setUsername(e.target.value)}
@@ -106,6 +108,7 @@ function Signup() {
       <FormControl isRequired>
         <FormLabel>Email</FormLabel>
         <Input
+          style={{ border: "1px solid #ccc", borderRadius: "5px" }}
           type="email"
           placeholder="Enter Your Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -115,12 +118,18 @@ function Signup() {
         <FormLabel>Password</FormLabel>
         <InputGroup>
           <Input
+            style={{ border: "1px solid #ccc", borderRadius: "5px" }}
             type={show ? "text" : "password"}
             placeholder="Enter Your Password"
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
           <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
+            <Button
+              bg="rgba(204, 206, 220, 0.7)"
+              h="1.75rem"
+              size="sm"
+              onClick={handleClick}
+            >
               {show ? "Hide" : "Show"}
             </Button>
           </InputRightElement>
@@ -129,13 +138,14 @@ function Signup() {
       <FormControl isRequired>
         <FormLabel>Confirm Password</FormLabel>
         <Input
+          style={{ border: "1px solid #ccc", borderRadius: "5px" }}
           type="password"
           placeholder="Confirm Your Password"
           onChange={(e) => setConfirmPass(e.target.value)}
         />
       </FormControl>
       <Button
-        colorScheme="green"
+        colorScheme="blue"
         width={"100%"}
         style={{ marginTop: 10 }}
         onClick={submitHandler}

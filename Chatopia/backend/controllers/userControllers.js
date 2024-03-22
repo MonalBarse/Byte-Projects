@@ -4,10 +4,11 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const generateToken = require('../config/generateToken');
 
+// /api/user
 // This function is used in the userRoutes.js file to register a new user
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
-    
+
     // For the user to be registered, the name, email and password must be provided
     if (!name || !email || !password) {
         res.status(400);
@@ -37,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id)
         });
-    }else {
+    } else {
         res.status(400);
         throw new Error('Invalid user data');  // Gracefully handeling the error if the user is not created
     }
@@ -63,7 +64,24 @@ const authUser = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { registerUser, authUser };
+// /api/user?search=   
+const allUsers = asyncHandler(async (req, res) => {
+    const search = req.query.search ? {
+        $or: [
+            { name: { $regex: req.query.search, $options: 'i' } },
+            { email: { $regex: req.query.search, $options: 'i' } },
+        ]
+    } : {};
+    const users = await User.find(search)
+        .find(
+            {
+                _id: { $ne: req.user._id }
+            }
+        )
+    res.send(users);
+});
+
+module.exports = { registerUser, authUser, allUsers };
 
 /* 
 Use of express-async-handler package:
@@ -73,9 +91,9 @@ Use of express-async-handler package:
 const asyncHandler = require('express-async-handler')
 
 express.get('/', asyncHandler(async (req, res, next) => {
-	const bar = await foo.findAll();
-	res.send(bar)
-}));
+    const bar = await foo.findAll();
+    res.send(bar)
+})); 
 
 --> Without express-async-handler
 

@@ -19,7 +19,7 @@ const Homepage = () => {
         d="flex"
         justifyContent="center"
         p={3}
-        bg="rgba(255, 255, 255, 0.9)"
+        bg="rgba(255, 255, 255, 0.8)"
         w="100%"
         m="40px 0 15px 0"
         borderRadius="lg"
@@ -30,15 +30,17 @@ const Homepage = () => {
         </Text>
       </Box>
       <Box
-        bg="rgba(255, 255, 255, 0.9)"
+        bg="rgba(255, 255, 255, 0.8)"
         w="100%"
         p={4}
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Tabs variant="soft-rounded" colorScheme="cyan">
-          <TabList mb='1em'>
-            <Tab width="50%">Login</Tab>
+        <Tabs variant="soft-rounded" colorScheme="blue">
+          <TabList mb="1em">
+            <Tab width="50%">
+              Login
+            </Tab>
             <Tab width="50%">Sign Up!</Tab>
           </TabList>
           <TabPanels>

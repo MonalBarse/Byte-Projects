@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+
+
 const userModel = new mongoose.Schema(
     {
         name: { type: String, trim: true, required: true },
         email: { type: String, trim: true, required: true, unique: true },
         password: { type: String, trim: true, required: true },
-      
-    },
-    {
+    },{
         timestamps: true // This will automatically add the createdAt and updatedAt fields to the schema
     }
 );
@@ -17,7 +17,7 @@ userModel.methods.matchPassword = async function (enteredPassword) {
 };
 // userModel.methods.YourMethodName: This defines a method called YourMethodName that will be available on instances of the userModel. 
 /* userModel.methods.matchPassword: This defines a method called matchPassword. A function that compares the enteredPassword (during login) with the hashed password stored in the database (this.password). It returns bool. */
-userModel.pre('save', async function (next) {
+userModel.pre('save', async function (next) {            // next can be called to move to the next middleware function in the stack   
     if (!this.isModified('password')) {                  // isModified is a property provided by Mongoose that indicates whether a field in the document has been modified.
         next();
     }
