@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;500&family=Recursive&family=Source+Code+Pro&family=Work+Sans:wght@200;320&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Work Sans", sans-serif;
+  background-color: #1a1a1a;
+  background-image: url("../Background_Img.jpg");
+  background-size: cover;
+  color: blanchedalmond;
+  
+  height: 100vh; /* Make the body fill the entire viewport height */
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 10), 45px);
+  grid-template-rows: repeat(var(--rows, 10), 45px);
+  padding: 1rem;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+
+  /* Make iit not selectable */
+  user-select: none;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fee4d9;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 17px;
+}
+
+.selected {
+  background-color:rgba(246, 214, 200, 0.4);
+  color: black;
+}

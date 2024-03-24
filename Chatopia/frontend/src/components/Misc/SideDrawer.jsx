@@ -8,14 +8,37 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   MenuItem,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+
+import ProfileModal from "./ProfileModal";
+import { ChatState } from "../../context/ChatProvider";
+import { useNavigate } from "react-router-dom";
+import LogoutConfirmationModal from "./LogoutConfirm";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
+
+  const { user } = ChatState();
+
+  const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/");
+  };
   return (
     <>
       <Box
@@ -102,27 +125,36 @@ const SideDrawer = () => {
                 />
               </svg>
             </MenuButton>
-            <MenuList bg="rgba(0, 0, 0, 0.6)">
+            <MenuList backdropFilter="blur(2px)" bg="rgba(0, 4, 4, 0.5)">
+              <ProfileModal user={user}>
+                <MenuItem
+                  bg="rgba(0, 4, 4, 0.6)"
+                  _hover={{
+                    bg: "rgba(50, 3, 255, 0.15)",
+                    transition: "background-color 0.1s ease-in-out",
+                  }}
+                  transition="background-color 0.8s ease-in-out"
+                >
+                  My Porfile
+                </MenuItem>
+              </ProfileModal>
               <MenuItem
-                bg="rgba(0, 0, 0, 0.6)"
-                _hover={{
-                  bg: "rgba(50, 3, 255, 0.15)",
-                  transition: "background-color 0.1s ease-in-out",
-                }}
-                transition="background-color 0.8s ease-in-out" 
-              >
-                My Porfile
-              </MenuItem>
-              <MenuItem
-                bg="rgba(0, 0, 0, 0.6)"
+                onClick={onOpen}
+                bg="rgba(0, 4, 4, 0.6)"
                 _hover={{
                   bg: "rgba(50, 3, 255, 0.15)",
                   transition: "background-color 0.2s ease-in-out",
                 }}
-                transition="background-color 0.8s ease-in-out" 
+                transition="background-color 0.8s ease-in-out"
               >
                 Logout
               </MenuItem>
+              <LogoutConfirmationModal
+                isOpen={isOpen}
+                onClose={onClose}
+                user={user}
+                logoutHandler={logoutHandler}
+              />
             </MenuList>
           </Menu>
         </div>
